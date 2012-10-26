@@ -3,7 +3,7 @@
 
 ## What Is It?
 **placefinder-py** is a small Python module that provides the ability to work
-with Yahoo's [http://developer.yahoo.com/boss/geo/](BOSS PlaceFinder geocoding service).
+with Yahoo's [BOSS PlaceFinder geocoding service](http://developer.yahoo.com/boss/geo/).
 This module provides all the basic functions needed to geocode address to latitude/longitude
 values as well as reverse-geocoding.
 
