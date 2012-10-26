@@ -7,7 +7,7 @@ with Yahoo's [http://developer.yahoo.com/boss/geo/](BOSS PlaceFinder geocoding s
 This module provides all the basic functions needed to geocode address to latitude/longitude
 values as well as reverse-geocoding.
 
-## License
+## License - MIT
 Copyright (c) 2012 Adam Presley
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
