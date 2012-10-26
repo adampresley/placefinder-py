@@ -1,3 +1,13 @@
+#
+# placefinder-py
+# version 0.2
+# 10/26/2012
+# Adam Presley (adam@adampresley.com)
+#
+# History:
+#    10/26/2012
+#       - Initial release of basic geocoding methods
+#
 import oauth2 as oauth
 import time, json
 import urllib
@@ -98,7 +108,7 @@ class PlaceFinder():
 	def geocodePOI(self, poi, flags = "", gflags = "", **kwargs):
 		kwargs["q"] = poi
 		return self.geocode(flags, gflags, **kwargs)
-		
+
 	def getLastResponse(self):
 		return self._lastResponse
 
