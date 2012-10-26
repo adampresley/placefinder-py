@@ -32,6 +32,10 @@ class PlaceFinderTests(unittest.TestCase):
 		result = self.placefinder.getQualityDescription(62)
 		self.assertEqual("Airport", result, "getQualityDescription(62) expected to return 'Airport'. Returned %s instead" % result)
 
+	def test_geocodeFreeform_valid_address_returns_single_match(self):
+		response, content, results = self.placefinder.geocodeFreeform("80 Delancey Street, New York, NY 10002")
+		self.assertEqual(1, len(results), "One record was expected to match. %s match(es) came back instead." % len(results))
+
 
 def suite():
 	suite = unittest.TestSuite()
