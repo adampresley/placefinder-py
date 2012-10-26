@@ -36,7 +36,11 @@ class PlaceFinderTests(unittest.TestCase):
 		response, content, results = self.placefinder.geocodeFreeform("80 Delancey Street, New York, NY 10002")
 		self.assertEqual(1, len(results), "One record was expected to match. %s match(es) came back instead." % len(results))
 
+	def test_geocodeMultiline_valid_address_returns_single_match(self):
+		response, content, results = self.placefinder.geocodeMultiline("80 Delancey Street", "New York", "NY", "10002")
+		self.assertEqual(1, len(results), "One record was expected to match. %s match(es) came back instead." % len(results))
 
+		
 def suite():
 	suite = unittest.TestSuite()
 	suite.addTest(unittest.makeSuite(PlaceFinderTests))
