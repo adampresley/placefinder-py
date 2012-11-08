@@ -10,6 +10,16 @@ values as well as reverse-geocoding.
 ## Installation and Usage
 For installation and usage information see the Wiki.
 
+## Release History
+**History:**
+
+* 11/07/2012
+   * Added function to reverse-geocode latitude/longitude
+   * Changed unit tests to be able to be run by nose
+   * Incremented version to 0.3
+* 10/26/2012
+   * Initial release of basic geocoding methods
+
 ## License - MIT
 Copyright (c) 2012 Adam Presley
 

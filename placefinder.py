@@ -1,10 +1,15 @@
 #
 # placefinder-py
-# version 0.2
+# version 0.3
 # 10/26/2012
 # Adam Presley (adam@adampresley.com)
 #
 # History:
+#    11/07/2012
+#       - Added function to reverse-geocode latitude/longitude
+#       - Changed unit tests to be able to be run by nose
+#       - Incremented version to 0.3
+#
 #    10/26/2012
 #       - Initial release of basic geocoding methods
 #
@@ -70,6 +75,10 @@ class PlaceFinder():
 		self._resultFormat = resultFormat
 		self._locale = locale
 
+	############################################################################
+	# Section: Public methods
+	############################################################################
+
 	def geocode(self, flags = "", gflags = "", **kwargs):
 		flags = flags + self._resultFormat
 
@@ -78,9 +87,9 @@ class PlaceFinder():
 
 		consumer = self._getConsumer()
 		client = self._getClient(consumer)
-		self._signRequest(self._buildUrl(flags, **kwargs), self._buildOAuthParams(flags, **kwargs), consumer)
+		self._signRequest(self._buildUrl(flags, gflags, **kwargs), self._buildOAuthParams(flags, gflags, **kwargs), consumer)
 
-		response, content = client.request(self._buildUrl(flags, **kwargs), "GET")
+		response, content = client.request(self._buildUrl(flags, gflags, **kwargs), "GET")
 		
 		self._lastResponse = response
 		content = json.loads(content)
@@ -115,15 +124,24 @@ class PlaceFinder():
 	def getQualityDescription(self, qualityNumber):
 		return self._qualityMapping[str(qualityNumber)]
 
+	def reverseGeocode(self, latitude, longitude, **kwargs):
+		kwargs["q"] = "%s,%s" % (str(latitude), str(longitude))
+		return self.geocode("", "R", **kwargs)
 
-	def _buildOAuthParams(self, flags, **kwargs):
+
+	############################################################################
+	# Section: Private methods
+	############################################################################
+
+	def _buildOAuthParams(self, flags, gflags, **kwargs):
 		params = {
 			"oauth_version": "1.0",
 			"oauth_nonce": oauth.generate_nonce(),
 			"oauth_timestamp": int(time.time()),
 			"oauth_consumer_key": self._key,
 			"appid": self._appId,
-			"flags": flags
+			"flags": flags,
+			"gflags": gflags
 		}
 
 		for arg in kwargs:
@@ -131,8 +149,8 @@ class PlaceFinder():
 
 		return params
 
-	def _buildUrl(self, flags, **kwargs):
-		return "%s?appid=%s&flags=%s&%s" % (self._baseUrl, self._appId, flags, urllib.urlencode(kwargs))
+	def _buildUrl(self, flags, gflags, **kwargs):
+		return "%s?appid=%s&flags=%s&gflags=%s&%s" % (self._baseUrl, self._appId, flags, gflags, urllib.urlencode(kwargs))
 
 	def _getClient(self, consumer):
 		return oauth.Client(consumer)

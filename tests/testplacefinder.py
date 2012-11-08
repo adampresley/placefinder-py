@@ -1,9 +1,9 @@
 import unittest, json
 from placefinder import PlaceFinder, InvalidSearchQueryException
 
-KEY = "YOUR KEY"
-SECRET = "YOUR SECRET"
-APP_ID = "YOUR APP ID"
+KEY = "dj0yJmk9aDc0NGlBVGo5aVRnJmQ9WVdrOWExVkZNVk53TldjbWNHbzlNakEwTWpjd09UZzJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD01NA--"
+SECRET = "01cbc2012ecc09b21cecfab07bd181df31d637c4"
+APP_ID = "kUE1Sp5g"
 
 class TestPlaceFinder(unittest.TestCase):
 	def setUp(self):
@@ -42,4 +42,8 @@ class TestPlaceFinder(unittest.TestCase):
 
 	def test_reverseGeocode_latLong_returns_matches(self):
 		response, content, results = self.placefinder.reverseGeocode(latitude = 29.941889, longitude = -90.129538)
+		print response
+		print content
+		print results
+
 		self.assertEqual(len(results) > 0, True, "Expected records returned. Actual: %s" % json.dumps(results, indent = 3))
