@@ -1,9 +1,9 @@
 import unittest, json
 from placefinder import PlaceFinder, InvalidSearchQueryException
 
-KEY = "dj0yJmk9aDc0NGlBVGo5aVRnJmQ9WVdrOWExVkZNVk53TldjbWNHbzlNakEwTWpjd09UZzJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD01NA--"
-SECRET = "01cbc2012ecc09b21cecfab07bd181df31d637c4"
-APP_ID = "kUE1Sp5g"
+KEY = "YOUR KEY"
+SECRET = "YOUR SECRET"
+APP_ID = "YOUR APP_ID"
 
 class TestPlaceFinder(unittest.TestCase):
 	def setUp(self):
