@@ -42,8 +42,4 @@ class TestPlaceFinder(unittest.TestCase):
 
 	def test_reverseGeocode_latLong_returns_matches(self):
 		response, content, results = self.placefinder.reverseGeocode(latitude = 29.941889, longitude = -90.129538)
-		print response
-		print content
-		print results
-
 		self.assertEqual(len(results) > 0, True, "Expected records returned. Actual: %s" % json.dumps(results, indent = 3))
